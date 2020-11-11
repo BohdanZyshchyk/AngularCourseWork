@@ -1,0 +1,12 @@
+<div class="container">
+  <h2>{{meme.title}}</h2>
+  <div class="row">
+    <div class="col-6">
+      <img [src]="meme.image" width="100%" alt="" srcset="" />
+    </div>
+    <div class="col-6" >
+      <app-comment-list class="comments" [memeId]="memeId"></app-comment-list>
+      <app-add-comment [memeId]="memeId"></app-add-comment>
+    </div>
+  </div>
+</div>

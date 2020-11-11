@@ -1,0 +1,13 @@
+<div class="comments">
+  <nz-list [nzDataSource]="comments" [nzRenderItem]="item" [nzItemLayout]="'horizontal'">
+    <ng-template #item let-item>
+      <nz-comment [nzAuthor]="item.userName" [nzDatetime]="item.date">
+        <nz-avatar nz-comment-avatar nzIcon="user" [nzSrc]=""></nz-avatar>
+        <nz-comment-content>
+          <p>{{ item.text }}</p>
+        </nz-comment-content>
+        <nz-comment-action>Reply to</nz-comment-action>
+      </nz-comment>
+    </ng-template>
+  </nz-list>
+</div>

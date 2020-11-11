@@ -1,0 +1,37 @@
+<div class="container">
+    <nz-list [nzDataSource]="memeList" [nzItemLayout]="'vertical'" [nzRenderItem]="item" [nzPagination]="pagination"
+    [nzFooter]="footer">
+    <ng-template #item let-item>
+        <nz-card nzHoverable [nzCover]="coverTemplate" style="width:540px" >
+            <nz-card-meta [nzTitle]="item.title" [routerLink]="['/meme/',item.id]">
+            </nz-card-meta>
+            <div class="container row">
+                <div class="col-xs-6">
+                    {{item.rating}} likes 
+                </div>
+                <div class="col-xs-6">
+                    321 comments
+                </div>
+            </div>
+            <button nz-button *ngIf="item.isUpvoted" nzType="primary" [nzSize]="size" (click)="upvote(item.id)"><i class="fas fa-arrow-up"></i></button>
+            <button nz-button *ngIf="!item.isUpvoted" nzType="default" [nzSize]="size" (click)="upvote(item.id)"><i class="fas fa-arrow-up"></i></button>
+            <button nz-button nzType="default" [nzSize]="size" (click)="downvote(item.id)"><i class="fas fa-arrow-down"></i></button>
+            <button nz-button nzType="default" [nzSize]="size" [routerLink]="['/meme/',item.id]"><i class="far fa-comment-alt"></i></button>
+            <button nz-button nz-dropdown [nzDropdownMenu]="menu" nzType="default" [nzSize]="size"><i class="fas fa-ellipsis-h"></i></button>
+            <nz-dropdown-menu nzTrigger="click" #menu="nzDropdownMenu">
+                <ul nz-menu>
+                  <li nz-menu-item (click)="copyLink(item.id)">Copy link</li>
+                  <li nz-menu-item>Email</li>
+                </ul>
+              </nz-dropdown-menu>
+        </nz-card>
+        <ng-template #coverTemplate>
+            <img alt="example" [routerLink]="['/meme/',item.id]" [src]="item.image" />
+        </ng-template>
+    </ng-template>
+    <ng-template #pagination>
+        <nz-pagination class="pagination" [nzPageIndex]="1" [nzTotal]="50" (nzPageIndexChange)="loadData($event)"></nz-pagination>
+    </ng-template>
+</nz-list>
+</div>
+<!-- src="https://img-9gag-fun.9cache.com/photo/awBP97R_700bwp.webp" -->
